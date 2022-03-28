@@ -129,9 +129,9 @@ export default function ChiSquare() {
 
       <div>
         <div>
-          A chi-square test for association was conducted between {cat} and{' '}
+          A chi-square test for independence was conducted between {cat} and{' '}
           {cont}. <CellFreq n={cellFreq} /> <StatDiff sf={sf} /> between {cat}{' '}
-          and {cont}, $\chi^2{df} = 5.195, p = {sf}$. <Association /> between{' '}
+          and {cont}, $\chi^2_{df} = 5.195, p = {sf}$. <Association /> between{' '}
           {cat} and {cont}, $φ = {phi}, p = {sf}$.
         </div>
       </div>

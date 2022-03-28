@@ -48,7 +48,7 @@ export default function PointBiserial() {
     firstCat: 'males',
     secondCat: 'females',
     sampleSize: '220',
-    df: '2',
+    // df: '2',
     firstMean: '34.3',
     secondMean: '39.21',
     firstSD: '11.83',
@@ -65,7 +65,7 @@ export default function PointBiserial() {
     firstCat,
     secondCat,
     sampleSize,
-    df,
+    // df,
     firstMean,
     secondMean,
     firstSD,
@@ -210,17 +210,6 @@ export default function PointBiserial() {
             })
           }
         />
-
-        <Input
-          label="Degree of freedom"
-          value={df}
-          setValue={(df) =>
-            setVariable({
-              ...variable,
-              df,
-            })
-          }
-        />
       </div>
       <hr />
       <div>
@@ -228,11 +217,11 @@ export default function PointBiserial() {
           A point-biserial correlation was run between {cat} and {cont}.
           Preliminary analyses showed there were <Outlier n={outlier} /> (b){' '}
           {cont} was normally distributed, as assessed by visual inspection of
-          Normal Q-Q plot of the {cont}; <Homogeneity n={levine} />
+          the Normal Q-Q plot of the {cont}; <Homogeneity n={levine} />
         </div>
         <div>
           <StatDiff sf={sf} /> between {cat} and {cont}, $r_{'{pb}'}(
-          {sampleSize - df}) = {r}, p = {sf}$, with {firstCat} having{' '}
+          {sampleSize - 2}) = {r}, p = {sf}$, with {firstCat} having{' '}
           {firstMean > secondMean ? 'more' : 'less'} {cont} than {secondCat},
           *M* = {firstMean} (*SD* ={firstSD}) vs. *M* = {secondMean} (*SD* ={' '}
           {secondSD}).{' '}
