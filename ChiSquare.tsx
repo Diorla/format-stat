@@ -36,6 +36,7 @@ export default function ChiSquare() {
     df: '2',
     cellFreq: 0,
     phi: 0.322,
+    chi: 0.292,
     // phiSf: 0.023,
   });
 
@@ -46,6 +47,7 @@ export default function ChiSquare() {
     df,
     cellFreq,
     phi,
+    chi,
     // phiSf
   } = variable;
 
@@ -104,6 +106,16 @@ export default function ChiSquare() {
           }
         />
         <Input
+          label="Chi"
+          value={chi}
+          setValue={(chi) =>
+            setVariable({
+              ...variable,
+              chi,
+            })
+          }
+        />
+        <Input
           label="Phi"
           value={phi}
           setValue={(phi) =>
@@ -131,8 +143,8 @@ export default function ChiSquare() {
         <div>
           A chi-square test for independence was conducted between {cat} and{' '}
           {cont}. <CellFreq n={cellFreq} /> <StatDiff sf={sf} /> between {cat}{' '}
-          and {cont}, $\chi^2_{df} = 5.195, p = {sf}$. <Association /> between{' '}
-          {cat} and {cont}, $φ = {phi}, p = {sf}$.
+          and {cont}, $\chi^2_{df} = {chi}, p = {sf}$. <Association n={phi} />{' '}
+          between {cat} and {cont}, $φ = {phi}, p = {sf}$.
         </div>
       </div>
     </div>
