@@ -1,30 +1,5 @@
 import React, { useState } from 'react';
 
-function Outlier({ n = 0 }) {
-  if (!Number(n)) return <span> (a) no outliers, as assessed by boxplot;</span>;
-  return (
-    <span> (a) {n} outliers was found and kept, as assessed by boxplot;</span>
-  );
-}
-
-function Homogeneity({ n = 0.051 }) {
-  if (n < 0.05)
-    return (
-      <span>
-        {' '}
-        (c) there was no homogeneity of variances, as assessed by Levene's test
-        for equality of variances.
-      </span>
-    );
-  return (
-    <span>
-      {' '}
-      (c) there was homogeneity of variances, as assessed by Levene's test for
-      equality of variances.
-    </span>
-  );
-}
-
 function StatDiff({ sf = 0.05, r = 0 }) {
   const positivity = r >= 0 ? 'positive' : 'negative';
   let strength = 'no correlation';
@@ -45,31 +20,28 @@ function Input({ label = '', value = '', setValue }) {
   );
 }
 
-export default function LinearRegression() {
+export default function Spearman() {
   const [variable, setVariable] = useState({
     cont: 'score',
-    cat: 'gender',
+    ord: 'gender',
     sf: '0.012',
-    outlier: '0',
     sampleSize: '220',
     df: '2',
     r: '0.169',
-    levine: 0.51,
   });
 
-  const { cont, cat, sf, outlier, sampleSize, df, r, levine } = variable;
+  const { cont, ord, sf, sampleSize, df, r } = variable;
 
-  const percent = (Number(r) ** 2 * 100).toFixed(2);
   return (
     <div>
       <div>
         <Input
-          label="Category variable"
-          value={cat}
-          setValue={(cat) =>
+          label="Ordinal variable"
+          value={ord}
+          setValue={(ord) =>
             setVariable({
               ...variable,
-              cat,
+              ord,
             })
           }
         />
@@ -115,27 +87,6 @@ export default function LinearRegression() {
           }
         />
         <Input
-          label="Levine sf"
-          value={levine}
-          setValue={(levine) =>
-            setVariable({
-              ...variable,
-              levine,
-            })
-          }
-        />
-        <Input
-          label="Outlier"
-          value={outlier}
-          setValue={(outlier) =>
-            setVariable({
-              ...variable,
-              outlier,
-            })
-          }
-        />
-
-        <Input
           label="Degree of freedom"
           value={df}
           setValue={(df) =>
@@ -149,16 +100,13 @@ export default function LinearRegression() {
       <hr />
       <div>
         <div>
-          A Pearson's product-moment correlation was run to assess the
-          relationship between {cat} and {cont}. Preliminary analyses showed
-          there were <Outlier n={outlier} /> (b) {cont} was normally
-          distributed, as assessed by visual inspection of Normal Q-Q plot of
-          the {cont}; <Homogeneity n={levine} />
+          A Spearman's rank-order correlation was run to assess the relationship
+          between {ord} and {cont}. Preliminary analysis showed the relationship
+          to be monotonic, as assessed by visual inspection of a scatterplot.
         </div>
         <div>
-          <StatDiff sf={sf} r={r} /> between {cat} and {cont}, $r_(
-          {sampleSize - df}) = {r}, p = {sf}$, with <span>{cat}</span>{' '}
-          accounting for {percent}% of the variability in {cont}s.
+          <StatDiff sf={sf} r={r} /> between {ord} and {cont}, $r_s(
+          {sampleSize - df}) = {r}, p = {sf}$
         </div>
       </div>
     </div>

@@ -3,10 +3,11 @@ import { render } from 'react-dom';
 import ChiSquare from './ChiSquare';
 import LinearRegression from './LinearRegression';
 import PointBiserial from './PointBiserial';
+import Spearman from './Spearman';
 import './style.css';
 
 const App = () => {
-  const [type, setType] = useState('lr');
+  const [type, setType] = useState('sp');
   return (
     <div>
       <select
@@ -18,10 +19,12 @@ const App = () => {
         <option value="pb">Point Biserial</option>
         <option value="ch">Chi-square</option>
         <option value="lr">Linear Regression</option>
+        <option value="sp">Spearman</option>
       </select>
       {type === 'pb' && <PointBiserial />}
       {type === 'ch' && <ChiSquare />}
       {type === 'lr' && <LinearRegression />}
+      {type === 'sp' && <Spearman />}
     </div>
   );
 };
