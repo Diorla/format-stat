@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
+import BLRegression from './BLRegression';
 import ChiSquare from './ChiSquare';
 import LinearRegression from './LinearRegression';
 import PointBiserial from './PointBiserial';
@@ -7,7 +8,7 @@ import Spearman from './Spearman';
 import './style.css';
 
 const App = () => {
-  const [type, setType] = useState('sp');
+  const [type, setType] = useState('br');
   return (
     <div>
       <select
@@ -20,11 +21,13 @@ const App = () => {
         <option value="ch">Chi-square</option>
         <option value="lr">Linear Regression</option>
         <option value="sp">Spearman</option>
+        <option value="br">Binomial Logistic Regression</option>
       </select>
       {type === 'pb' && <PointBiserial />}
       {type === 'ch' && <ChiSquare />}
       {type === 'lr' && <LinearRegression />}
       {type === 'sp' && <Spearman />}
+      {type === 'br' && <BLRegression />}
     </div>
   );
 };
