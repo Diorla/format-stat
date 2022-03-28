@@ -14,6 +14,7 @@ function Input({ label = '', value = '', setValue, placeholder = '' }) {
 }
 
 function Independent({ vars = [] }) {
+  if (vars.length < 2) return <span>{vars[0]}</span>;
   return (
     <span>
       {vars.map((item, idx) => {
@@ -42,7 +43,7 @@ function Dependent({ name = '', type = 'category', expB = 0, dep }) {
   if (expB < 0)
     return (
       <span>
-        Increasing {name} was associated with an decreased likelihood of
+        Increasing {name} was associated with a decreased likelihood of
         exhibiting {dep}.
       </span>
     );
