@@ -26,7 +26,6 @@ function Homogeneity({ n = 0.051 }) {
 }
 
 function StatDiff({ sf = 0.05, r = 0 }) {
-  // There was a statistically significant, moderate positive correlation
   const positivity = r >= 0 ? 'positive' : 'negative';
   let strength = 'no correlation';
   if (r > 0.5) strength = `strong ${positivity} correlation`;
