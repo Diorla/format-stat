@@ -8,7 +8,7 @@ import Spearman from './Spearman';
 import './style.css';
 
 const App = () => {
-  const [type, setType] = useState('lr');
+  const [type, setType] = useState('sp');
   return (
     <div>
       <select
