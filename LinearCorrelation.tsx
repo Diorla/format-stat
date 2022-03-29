@@ -28,9 +28,10 @@ function Homogeneity({ n = 0.051 }) {
 function StatDiff({ sf = 0.05, r = 0 }) {
   const positivity = r >= 0 ? 'positive' : 'negative';
   let strength = 'no correlation';
-  if (r > 0.5) strength = `strong ${positivity} correlation`;
-  else if (r > 0.3) strength = `moderate ${positivity} correlation`;
-  else if (r > 0.1) strength = `weak ${positivity} correlation`;
+  const abs = Math.abs(r);
+  if (abs > 0.5) strength = `strong ${positivity} correlation`;
+  else if (abs > 0.3) strength = `moderate ${positivity} correlation`;
+  else if (abs > 0.1) strength = `weak ${positivity} correlation`;
   if (sf <= 0.05)
     return <span>There was a statistically significant, {strength}</span>;
   return <span>There was no statistically significant correlation</span>;
@@ -45,7 +46,7 @@ function Input({ label = '', value = '', setValue }) {
   );
 }
 
-export default function LinearRegression() {
+export default function LinearCorrelation() {
   const [variable, setVariable] = useState({
     cont: 'score',
     cat: 'gender',
